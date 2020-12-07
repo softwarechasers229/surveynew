@@ -1,0 +1,47 @@
+<h2 class="page-title">My profile</h2>
+<mat-card>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="updateUser()">
+            <h3>Update Profile details</h3>
+            <div class="form-holder">
+                <span class="lnr lnr-user"></span>
+                <input type="text" class="form-control" placeholder="Firstname" formControlName="firstname">
+                <div *ngIf="f.firstname.touched && f.firstname.invalid" class="alert alert-danger">
+                    <div *ngIf="f.firstname.errors.required">Firstname is required.</div>
+                    <div *ngIf="f.firstname.errors.minlength">Firstname should be 3 character.</div>
+                </div>
+            </div>
+            <div class="form-holder">
+                <span class="lnr lnr-user"></span>
+                <input type="text" class="form-control" placeholder="Lastname" formControlName="lastname">
+                <div *ngIf="f.lastname.touched && f.lastname.invalid" class="alert alert-danger">
+                    <div *ngIf="f.lastname.errors.required">Lastname is required.</div>
+                    <div *ngIf="f.lastname.errors.minlength">Lastname should be 3 character.</div>
+                </div>
+            </div>
+            <div class="form-holder">
+                <span class="lnr lnr-envelope"></span>
+                <input type="text" class="form-control" placeholder="E-Mail" formControlName="email">
+                <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                    <div *ngIf="f.email.errors.required">Email is required.</div>
+                    <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                </div>
+            </div>
+            <div class="form-holder">
+                <span class="lnr lnr-lock"></span>
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+            </div>
+            <div class="form-holder">
+                <span class="lnr lnr-lock"></span>
+                <input type="number" class="form-control" placeholder="Phone number" formControlName="phone">
+            </div>
+            <div class="form-holder">
+                <span class="lnr lnr-lock"></span>
+                <input type="text" class="form-control" placeholder="About me" formControlName="about">
+            </div>
+            <button style=" width: 104px !important; " type="submit">
+                <span>Update</span>
+            </button>
+        </form>
+    </div>
+</mat-card>

@@ -1,0 +1,83 @@
+<h2 class="page-title">Survey</h2>
+<mat-card>
+    <!-- (ngSubmit)="onSubmit()" -->
+    <form [formGroup]="surveyForm" autocomplete="off">
+        <h4 class="list-title">Basic Information </h4>
+        <mat-form-field class="full-width">
+            <input formControlName="name" matInput placeholder="Enter Full Name" maxlength="50" [required]="true">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input formControlName="email" matInput placeholder="Enter Email" maxlength="50" [required]="true">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input type="number" formControlName="phone" matInput placeholder="Enter Phone Number" maxlength="50" [required]="true">
+        </mat-form-field>
+
+        
+        <div class="survey-options">
+            <div formArrayName="questionnaires" class="poll-options">
+                <h3 class="list-title">Survey Questions </h3>
+                <ol class="list-style">
+                    <li *ngFor="let questionCtrl of surveyForm?.get('questionnaires')['controls']; let i = index">
+                        <div [formGroupName]="i">
+                            <div>
+                                <mat-form-field class="full-width">
+                                    <input formControlName="questiontitle" maxlength="200" matInput
+                                        placeholder="Question title" disabled>
+                                </mat-form-field>
+                                <div formGroupName="questionGroup" [ngSwitch]="questionDetails?.type">
+                                    <div *ngSwitchCase="'Agree/ Disagree'">
+                                        <div *ngIf="questionCtrl?.controls?.questionGroup?.controls?.options">
+                                            <ul class="question-type">
+                                                <li>
+                                                    <mat-radio-group formControlName="answerText"
+                                                        aria-labelledby="example-radio-group-label"
+                                                        class="example-radio-group">
+                                                        <mat-radio-button class="example-radio-button"
+                                                            *ngFor="let season of optionMultiChoice[i]"
+                                                            [value]="season">
+                                                            {{season}}
+                                                        </mat-radio-button>
+                                                    </mat-radio-group>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div *ngSwitchCase="'Multiple choice'">
+                                        <div *ngIf="questionCtrl?.controls?.questionGroup?.controls?.options">
+                                            <ul class="question-type">
+                                                <li>
+                                                    <mat-radio-group formControlName="answerText"
+                                                        aria-labelledby="example-radio-group-label"
+                                                        class="example-radio-group">
+                                                        <mat-radio-button class="example-radio-button"
+                                                            *ngFor="let season of optionMultiChoice[i]"
+                                                            [value]="season">
+                                                            {{season}}
+                                                        </mat-radio-button>
+                                                    </mat-radio-group>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div *ngSwitchCase="'Short Answer'">
+                                        <mat-form-field class="full-width">
+                                            <textarea formControlName="answerText" style="resize: none;" matInput
+                                                placeholder="Textarea"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="button-row">
+            <button class="full-width" color="primary" type="submit" (click)="onSubmit()">
+                <span>Submit Survey</span>
+            </button>
+        </div>
+    </form>
+</mat-card>

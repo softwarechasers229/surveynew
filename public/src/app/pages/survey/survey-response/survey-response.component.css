@@ -1,0 +1,22 @@
+
+
+
+#wizard_container {
+    width: 90%;
+    margin: auto;
+  }
+
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .mat-input-element:disabled {
+    color: rgb(37 35 35) !important;
+}
+  
